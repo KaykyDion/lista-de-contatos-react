@@ -1,12 +1,13 @@
-import ContactList from "./pages/ContactList";
-import GlobalStyle from "./styles";
+import GlobalStyle, { Container } from "./styles";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
   return (
-    <>
+    <Container>
       <GlobalStyle />
-      <ContactList />
-    </>
+      <RouterProvider router={router} />
+    </Container>
   );
 }
 

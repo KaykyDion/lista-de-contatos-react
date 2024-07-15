@@ -1,13 +1,13 @@
 import { Button, RemoveButton } from "../../styles";
 import * as S from "./styles";
 
-type Props = {
+export type ContactType = {
   name: string;
   email: string;
   telephone: string;
 };
 
-export default function Contact({ name, email, telephone }: Props) {
+export default function Contact({ name, email, telephone }: ContactType) {
   return (
     <S.Card>
       <S.InfosContainer>

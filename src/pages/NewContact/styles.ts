@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const EditContactContainer = styled.div`
+export const NewContactContainer = styled.div`
   margin-top: 15%;
   display: flex;
   flex-direction: column;

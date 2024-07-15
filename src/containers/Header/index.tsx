@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Input, SaveButton } from "../../styles";
 import * as S from "./styles";
 
@@ -6,7 +7,9 @@ export default function Header() {
     <S.Header>
       <h1>Contatos</h1>
       <Input type="text" placeholder="Buscar pelo nome" />
-      <SaveButton>Adicionar contato +</SaveButton>
+      <Link to={"/new-contact"}>
+        <SaveButton>Adicionar contato +</SaveButton>
+      </Link>
     </S.Header>
   );
 }

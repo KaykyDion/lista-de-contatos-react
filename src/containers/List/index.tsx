@@ -1,19 +1,19 @@
-import Contact from "../../components/Contact";
+import { useSelector } from "react-redux";
+import Contact, { ContactType } from "../../components/Contact";
 import * as S from "./styles";
+import { RootReducer } from "../../store";
 
 export default function List() {
-  const contacts = [
-    { nome: "Kayky", email: "kayky@gmail.com", telephone: "31 99088984" },
-    { nome: "pedro", email: "pedro@gmail.com", telephone: "31 99088984" },
-    { nome: "victor", email: "victor@gmail.com", telephone: "31 99088984" },
-  ];
+  const contacts = useSelector(
+    (state: RootReducer) => state.contactsList.contacts
+  );
 
   return (
     <S.List>
-      {contacts.map((c) => (
+      {contacts.map((c: ContactType) => (
         <Contact
-          key={c.nome}
-          name={c.nome}
+          key={c.name}
+          name={c.name}
           email={c.email}
           telephone={c.telephone}
         />

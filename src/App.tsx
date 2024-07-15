@@ -1,13 +1,17 @@
 import GlobalStyle, { Container } from "./styles";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <Container>
+    <Provider store={store}>
       <GlobalStyle />
-      <RouterProvider router={router} />
-    </Container>
+      <Container>
+        <RouterProvider router={router} />
+      </Container>
+    </Provider>
   );
 }
 

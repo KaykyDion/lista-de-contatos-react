@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button, RemoveButton } from "../../styles";
 import * as S from "./styles";
 
@@ -34,7 +35,9 @@ export default function Contact({ name, email, telephone }: ContactType) {
         </S.Info>
       </S.InfosContainer>
       <S.ButtonContainer>
-        <Button>Editar</Button>
+        <Link to={"/edit"}>
+          <Button>Editar</Button>
+        </Link>
         <RemoveButton>Remover</RemoveButton>
       </S.ButtonContainer>
     </S.Card>

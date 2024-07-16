@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button, RemoveButton } from "../../styles";
 import * as S from "./styles";
+import { useDispatch } from "react-redux";
+import { remove } from "../../store/reducers/contacts";
 
 export type ContactType = {
   name: string;
@@ -9,6 +11,8 @@ export type ContactType = {
 };
 
 export default function Contact({ name, email, telephone }: ContactType) {
+  const dispatch = useDispatch();
+
   return (
     <S.Card>
       <S.InfosContainer>
@@ -38,7 +42,11 @@ export default function Contact({ name, email, telephone }: ContactType) {
         <Link to={"/edit"}>
           <Button>Editar</Button>
         </Link>
-        <RemoveButton>Remover</RemoveButton>
+        <RemoveButton
+          onClick={() => dispatch(remove({ name, email, telephone }))}
+        >
+          Remover
+        </RemoveButton>
       </S.ButtonContainer>
     </S.Card>
   );

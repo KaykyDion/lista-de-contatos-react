@@ -8,9 +8,9 @@ export type ContactsState = {
 const initialState: ContactsState = {
   contacts: [
     { name: "Kayky", email: "kayky@gmail.com", telephone: "31 99088984" },
-    { name: "pedro", email: "pedro@gmail.com", telephone: "31 99088984" },
-    { name: "victor", email: "victor@gmail.com", telephone: "31 99088984" },
-    { name: "Marcos", email: "victor@gmail.com", telephone: "31 99088984" },
+    { name: "pedro", email: "pedro@gmail.com", telephone: "31 99768984" },
+    { name: "victor", email: "victor@gmail.com", telephone: "31 98088184" },
+    { name: "Marcos", email: "victor@gmail.com", telephone: "31 91188984" },
   ],
 };
 
@@ -32,8 +32,20 @@ const contactsSlice = createSlice({
         alert(contact.name + " foi adicionado");
       }
     },
+    remove: (state, action: PayloadAction<ContactType>) => {
+      const contact = action.payload;
+      const confirmation = confirm(
+        `Deseja remover o contato: ${contact.name} - ${contact.telephone} - ${contact.email}? `
+      );
+
+      if (confirmation) {
+        state.contacts = state.contacts.filter(
+          (c) => c.telephone !== contact.telephone
+        );
+      }
+    },
   },
 });
 
-export const { add } = contactsSlice.actions;
+export const { add, remove } = contactsSlice.actions;
 export default contactsSlice.reducer;

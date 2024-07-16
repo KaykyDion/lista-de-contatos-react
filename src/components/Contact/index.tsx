@@ -8,9 +8,10 @@ export type ContactType = {
   name: string;
   email: string;
   telephone: string;
+  id: string;
 };
 
-export default function Contact({ name, email, telephone }: ContactType) {
+export default function Contact({ name, email, telephone, id }: ContactType) {
   const dispatch = useDispatch();
 
   return (
@@ -43,7 +44,7 @@ export default function Contact({ name, email, telephone }: ContactType) {
           <Button>Editar</Button>
         </Link>
         <RemoveButton
-          onClick={() => dispatch(remove({ name, email, telephone }))}
+          onClick={() => dispatch(remove({ name, email, telephone, id }))}
         >
           Remover
         </RemoveButton>

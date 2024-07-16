@@ -2,14 +2,19 @@ import { useState } from "react";
 import { ContactType } from "../../components/Contact";
 import { Input, SaveButton } from "../../styles";
 import * as S from "./styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/reducers/contacts";
+import { RootReducer } from "../../store";
 
 type Props = {
   contact?: ContactType;
 };
 
 export default function ContactForm({ contact }: Props) {
+  const contacts = useSelector(
+    (state: RootReducer) => state.contactsList.contacts
+  );
+
   const [name, setName] = useState(contact ? contact.name : "");
   const [email, setEmail] = useState(contact ? contact.email : "");
   const [telephone, setTelephone] = useState(contact ? contact.telephone : "");
@@ -18,7 +23,14 @@ export default function ContactForm({ contact }: Props) {
 
   function addContact(ev: React.FormEvent) {
     ev.preventDefault();
-    dispatch(add({ name, email, telephone }));
+    dispatch(
+      add({
+        name,
+        email,
+        telephone,
+        id: `${name}${contacts.length + 1}`.replace(/ /g, "").toLowerCase(),
+      })
+    );
   }
 
   return (

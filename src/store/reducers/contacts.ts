@@ -7,10 +7,30 @@ export type ContactsState = {
 
 const initialState: ContactsState = {
   contacts: [
-    { name: "Kayky", email: "kayky@gmail.com", telephone: "31 99088984" },
-    { name: "pedro", email: "pedro@gmail.com", telephone: "31 99768984" },
-    { name: "victor", email: "victor@gmail.com", telephone: "31 98088184" },
-    { name: "Marcos", email: "victor@gmail.com", telephone: "31 91188984" },
+    {
+      name: "Kayky",
+      email: "kayky@gmail.com",
+      telephone: "31 99088984",
+      id: "kayky1",
+    },
+    {
+      name: "pedro",
+      email: "pedro@gmail.com",
+      telephone: "31 99768984",
+      id: "pedro2",
+    },
+    {
+      name: "victor",
+      email: "victor@gmail.com",
+      telephone: "31 98088184",
+      id: "victor3",
+    },
+    {
+      name: "Marcos",
+      email: "victor@gmail.com",
+      telephone: "31 91188984",
+      id: "Marcos4",
+    },
   ],
 };
 
@@ -39,9 +59,7 @@ const contactsSlice = createSlice({
       );
 
       if (confirmation) {
-        state.contacts = state.contacts.filter(
-          (c) => c.telephone !== contact.telephone
-        );
+        state.contacts = state.contacts.filter((c) => c.id !== contact.id);
       }
     },
   },

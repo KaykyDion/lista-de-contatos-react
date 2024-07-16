@@ -16,6 +16,7 @@ export default function List() {
           name={c.name}
           email={c.email}
           telephone={c.telephone}
+          id={c.id}
         />
       ))}
     </S.List>

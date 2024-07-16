@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, RemoveButton, SaveButton } from "../../styles";
 import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { add, edit } from "../../store/reducers/contacts";
 import { RootReducer } from "../../store";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import VMasker from "vanilla-masker";
 
 export default function ContactForm() {
   const contacts = useSelector(
@@ -18,6 +19,10 @@ export default function ContactForm() {
   const [name, setName] = useState(contact ? contact.name : "");
   const [email, setEmail] = useState(contact ? contact.email : "");
   const [telephone, setTelephone] = useState(contact ? contact.telephone : "");
+
+  useEffect(() => {
+    setTelephone(VMasker.toPattern(telephone, "(99) 9999-9999"));
+  }, [telephone]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -81,6 +86,7 @@ export default function ContactForm() {
             id="number"
             value={telephone}
             onChange={(ev) => setTelephone(ev.target.value)}
+            minLength={14}
           />
         </S.InputContainer>
         <SaveButton type="submit">Confirmar</SaveButton>

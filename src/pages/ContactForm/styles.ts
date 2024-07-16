@@ -22,14 +22,24 @@ export const Form = styled.form`
 `;
 
 export const FormContainer = styled.div`
-  margin-top: 15%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
 
+  @media (max-width: 768px) {
+    margin-top: 18%;
+  }
+
   h2 {
     text-align: center;
+  }
+
+  .back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
   }
 `;

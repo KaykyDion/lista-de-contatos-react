@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { ContactType } from "../../components/Contact";
-import { Input, SaveButton } from "../../styles";
+import { Input, RemoveButton, SaveButton } from "../../styles";
 import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../store/reducers/contacts";
+import { add, edit } from "../../store/reducers/contacts";
 import { RootReducer } from "../../store";
+import { Link, useParams } from "react-router-dom";
 
-type Props = {
-  contact?: ContactType;
-};
-
-export default function ContactForm({ contact }: Props) {
+export default function ContactForm() {
   const contacts = useSelector(
     (state: RootReducer) => state.contactsList.contacts
   );
+
+  const { contactId } = useParams();
+
+  const contact = contacts.find((c) => c.id === contactId);
 
   const [name, setName] = useState(contact ? contact.name : "");
   const [email, setEmail] = useState(contact ? contact.email : "");
@@ -21,22 +21,35 @@ export default function ContactForm({ contact }: Props) {
 
   const dispatch = useDispatch();
 
-  function addContact(ev: React.FormEvent) {
+  function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault();
-    dispatch(
-      add({
-        name,
-        email,
-        telephone,
-        id: `${name}${contacts.length + 1}`.replace(/ /g, "").toLowerCase(),
-      })
-    );
+    if (contact) {
+      dispatch(edit({ name, email, telephone, id: contact.id }));
+    } else {
+      dispatch(
+        add({
+          name,
+          email,
+          telephone,
+          id: `${name}${contacts.length + 1}`.replace(/ /g, "").toLowerCase(),
+        })
+      );
+    }
   }
 
   return (
     <S.FormContainer>
-      <h2>{contact ? `Editando - ${name} - ${telephone}` : "Novo contato"}</h2>
-      <S.Form onSubmit={(ev) => addContact(ev)}>
+      <Link to="/">
+        <RemoveButton className="back-button">&lt;- Voltar</RemoveButton>
+      </Link>
+      <i>
+        <h2>
+          {contact
+            ? `Editando - ${contact.name} - ${contact.telephone}`
+            : "Novo contato"}
+        </h2>
+      </i>
+      <S.Form onSubmit={(ev) => handleSubmit(ev)}>
         <S.InputContainer>
           <label htmlFor="name">Nome:</label>
           <Input

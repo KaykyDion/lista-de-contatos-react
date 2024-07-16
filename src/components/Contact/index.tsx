@@ -40,7 +40,7 @@ export default function Contact({ name, email, telephone, id }: ContactType) {
         </S.Info>
       </S.InfosContainer>
       <S.ButtonContainer>
-        <Link to={"/edit"}>
+        <Link to={`edit/${id}`}>
           <Button>Editar</Button>
         </Link>
         <RemoveButton

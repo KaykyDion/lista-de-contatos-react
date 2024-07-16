@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/edit",
+    path: "/edit/:contactId",
     element: <ContactForm />,
   },
   {

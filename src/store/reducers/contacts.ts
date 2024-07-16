@@ -62,8 +62,15 @@ const contactsSlice = createSlice({
         state.contacts = state.contacts.filter((c) => c.id !== contact.id);
       }
     },
+    edit: (state, action: PayloadAction<ContactType>) => {
+      const contact = action.payload;
+      const index = state.contacts.findIndex((c) => c.id === contact.id);
+      alert("Contato editado com sucesso!");
+
+      state.contacts[index] = contact;
+    },
   },
 });
 
-export const { add, remove } = contactsSlice.actions;
+export const { add, remove, edit } = contactsSlice.actions;
 export default contactsSlice.reducer;

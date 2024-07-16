@@ -10,12 +10,15 @@ export const Card = styled.div`
 `;
 
 export const InfosContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
   justify-content: space-between;
   padding-bottom: 8px;
   border-bottom: 4px solid rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
+    display: flex;
     flex-direction: column;
     gap: 8px;
   }

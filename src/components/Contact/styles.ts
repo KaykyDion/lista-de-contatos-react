@@ -41,5 +41,6 @@ export const ButtonContainer = styled.div`
 
   @media (max-width: 768px) {
     justify-content: center;
+    margin-top: 16px;
   }
 `;

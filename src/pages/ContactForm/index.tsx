@@ -4,7 +4,7 @@ import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { add, edit } from "../../store/reducers/contacts";
 import { RootReducer } from "../../store";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function ContactForm() {
   const contacts = useSelector(
@@ -20,6 +20,7 @@ export default function ContactForm() {
   const [telephone, setTelephone] = useState(contact ? contact.telephone : "");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault();
@@ -35,6 +36,8 @@ export default function ContactForm() {
         })
       );
     }
+
+    navigate("/");
   }
 
   return (
